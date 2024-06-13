@@ -4,5 +4,6 @@ namespace mojeIKP.Services;
 
 public interface IDbService
 {
-    Task<ICollection<Doctor>> GetDoctors();
+    public Task<bool> DoesPatienExists(int PatientId);
+    public Task<Patient?> GetPatientInfo(int PatientId);
 }

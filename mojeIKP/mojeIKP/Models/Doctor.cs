@@ -11,15 +11,15 @@ public class Doctor
     
     [MaxLength(100)]
     [Required]
-    public string FirstName { get; set; } = string.Empty;
+    public string FirstName { get; set; } = null!;
     
     [MaxLength(100)]
     [Required]
-    public string LastName { get; set; } = string.Empty;
+    public string LastName { get; set; } = null!;
     
     [MaxLength(100)]
     [Required]
-    public string Email { get; set; } = string.Empty;
+    public string Email { get; set; } = null!;
     
     public ICollection<Prescription> Prescriptions { get; set; } = new HashSet<Prescription>();
 }

@@ -13,8 +13,19 @@ public class DbService : IDbService
         _context = context;
     }
 
-    public async Task<ICollection<Doctor>> GetDoctors()
+    public async Task<bool> DoesPatienExists(int PatientId)
     {
-        return await _context.Doctor.ToListAsync();
+        return await _context.Patient.AnyAsync(x => x.IdPatient == PatientId);
+    }
+
+    public async Task<Patient?> GetPatientInfo(int PatientId)
+    {
+        return await _context.Patient
+            .Include(x => x.Prescriptions)
+            .ThenInclude(x => x.Prescription_Medicaments)
+            .ThenInclude(x => x.Medicament)
+            .Include(y => y.Prescriptions)
+            .ThenInclude(y => y.Doctor)
+            .FirstOrDefaultAsync(p => p.IdPatient == PatientId);
     }
 }

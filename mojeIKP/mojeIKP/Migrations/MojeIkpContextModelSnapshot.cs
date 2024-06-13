@@ -48,6 +48,36 @@ namespace mojeIKP.Migrations
                     b.HasKey("IdDoctor");
 
                     b.ToTable("Doctor");
+
+                    b.HasData(
+                        new
+                        {
+                            IdDoctor = 1,
+                            Email = "tomaszewguru@gmail.com",
+                            FirstName = "Michal",
+                            LastName = "Tomaszewski"
+                        },
+                        new
+                        {
+                            IdDoctor = 2,
+                            Email = "jaroslawpolskezbaw@gmail.com",
+                            FirstName = "Jaroslaw",
+                            LastName = "Kaczynski"
+                        },
+                        new
+                        {
+                            IdDoctor = 3,
+                            Email = "dudawaswyduda@gmail.com",
+                            FirstName = "Andrzej",
+                            LastName = "Duda"
+                        },
+                        new
+                        {
+                            IdDoctor = 4,
+                            Email = "germanislove@gmail.com",
+                            FirstName = "Donald",
+                            LastName = "German"
+                        });
                 });
 
             modelBuilder.Entity("mojeIKP.Models.Medicament", b =>
@@ -76,6 +106,36 @@ namespace mojeIKP.Migrations
                     b.HasKey("IdMedicament");
 
                     b.ToTable("Medicament");
+
+                    b.HasData(
+                        new
+                        {
+                            IdMedicament = 1,
+                            Description = "lek przeciwbolowy",
+                            Name = "Paracetamol",
+                            Type = "tabletki"
+                        },
+                        new
+                        {
+                            IdMedicament = 2,
+                            Description = "lek przeciwzapalny",
+                            Name = "Ibuprofen MAX",
+                            Type = "tabletki"
+                        },
+                        new
+                        {
+                            IdMedicament = 3,
+                            Description = "na gardlowe stany zapalne",
+                            Name = "Tamtum Verde",
+                            Type = "aerozol"
+                        },
+                        new
+                        {
+                            IdMedicament = 4,
+                            Description = "porost islandzki lagodzacy podraznione gardlo",
+                            Name = "Isla",
+                            Type = "pastylki do ssania"
+                        });
                 });
 
             modelBuilder.Entity("mojeIKP.Models.Patient", b =>
@@ -102,6 +162,43 @@ namespace mojeIKP.Migrations
                     b.HasKey("IdPatient");
 
                     b.ToTable("Patient");
+
+                    b.HasData(
+                        new
+                        {
+                            IdPatient = 1,
+                            Birthdate = new DateTime(1979, 8, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Jan",
+                            LastName = "Rzezucha"
+                        },
+                        new
+                        {
+                            IdPatient = 2,
+                            Birthdate = new DateTime(1921, 3, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Jan",
+                            LastName = "Pawel"
+                        },
+                        new
+                        {
+                            IdPatient = 3,
+                            Birthdate = new DateTime(1969, 3, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Grazyna",
+                            LastName = "Komuchuwna"
+                        },
+                        new
+                        {
+                            IdPatient = 4,
+                            Birthdate = new DateTime(1990, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Julia",
+                            LastName = "Przysrebska"
+                        },
+                        new
+                        {
+                            IdPatient = 5,
+                            Birthdate = new DateTime(1975, 6, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Jacek",
+                            LastName = "Kusrski"
+                        });
                 });
 
             modelBuilder.Entity("mojeIKP.Models.Prescription", b =>
@@ -131,6 +228,48 @@ namespace mojeIKP.Migrations
                     b.HasIndex("IdPatient");
 
                     b.ToTable("Prescription");
+
+                    b.HasData(
+                        new
+                        {
+                            IdPrescription = 1,
+                            Date = new DateTime(2024, 6, 13, 3, 28, 9, 146, DateTimeKind.Local).AddTicks(3164),
+                            DueDate = new DateTime(2024, 7, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdDoctor = 1,
+                            IdPatient = 1
+                        },
+                        new
+                        {
+                            IdPrescription = 2,
+                            Date = new DateTime(2024, 6, 13, 3, 28, 9, 146, DateTimeKind.Local).AddTicks(3222),
+                            DueDate = new DateTime(2024, 7, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdDoctor = 2,
+                            IdPatient = 2
+                        },
+                        new
+                        {
+                            IdPrescription = 3,
+                            Date = new DateTime(2024, 6, 13, 3, 28, 9, 146, DateTimeKind.Local).AddTicks(3225),
+                            DueDate = new DateTime(2024, 7, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdDoctor = 3,
+                            IdPatient = 3
+                        },
+                        new
+                        {
+                            IdPrescription = 4,
+                            Date = new DateTime(2024, 6, 13, 3, 28, 9, 146, DateTimeKind.Local).AddTicks(3229),
+                            DueDate = new DateTime(2024, 7, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdDoctor = 4,
+                            IdPatient = 4
+                        },
+                        new
+                        {
+                            IdPrescription = 5,
+                            Date = new DateTime(2024, 6, 13, 3, 28, 9, 146, DateTimeKind.Local).AddTicks(3232),
+                            DueDate = new DateTime(2024, 7, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdDoctor = 3,
+                            IdPatient = 5
+                        });
                 });
 
             modelBuilder.Entity("mojeIKP.Models.Prescription_Medicament", b =>
@@ -153,6 +292,64 @@ namespace mojeIKP.Migrations
                     b.HasIndex("IdPrescription");
 
                     b.ToTable("Prescription_Medicament");
+
+                    b.HasData(
+                        new
+                        {
+                            IdMedicament = 1,
+                            IdPrescription = 1,
+                            Details = "po jednej tabletce 3 razy dziennie",
+                            Dose = 1
+                        },
+                        new
+                        {
+                            IdMedicament = 3,
+                            IdPrescription = 1,
+                            Details = "ile wlezie do gardla",
+                            Dose = 1
+                        },
+                        new
+                        {
+                            IdMedicament = 4,
+                            IdPrescription = 1,
+                            Details = "cmukac do woli",
+                            Dose = 1
+                        },
+                        new
+                        {
+                            IdMedicament = 1,
+                            IdPrescription = 2,
+                            Details = "po jednej tabletce 3 razy dziennie",
+                            Dose = 1
+                        },
+                        new
+                        {
+                            IdMedicament = 2,
+                            IdPrescription = 2,
+                            Details = "po jednej tabletce 3 razy dziennie",
+                            Dose = 1
+                        },
+                        new
+                        {
+                            IdMedicament = 3,
+                            IdPrescription = 3,
+                            Details = "cmukac umiarkowanie",
+                            Dose = 1
+                        },
+                        new
+                        {
+                            IdMedicament = 3,
+                            IdPrescription = 4,
+                            Details = "cmukac do woli",
+                            Dose = 2
+                        },
+                        new
+                        {
+                            IdMedicament = 2,
+                            IdPrescription = 5,
+                            Details = "brac kiedy boli glowa",
+                            Dose = 2
+                        });
                 });
 
             modelBuilder.Entity("mojeIKP.Models.Prescription", b =>
