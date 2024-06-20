@@ -25,14 +25,6 @@ public class PatientsController : ControllerBase
         {
             return NotFound($"Client with given ID - {PatientId} doesn't exist");
         }
-
-        var temp = new
-        {
-            ID = pi.Prescriptions.Select(x => x.Doctor.IdDoctor),
-            FName = pi.Prescriptions.Select(x => x.Doctor.FirstName),
-            LName = pi.Prescriptions.Select(x => x.Doctor.LastName),
-            Email = pi.Prescriptions.Select(x => x.Doctor.Email)
-        };
         
         var res = new
         {
@@ -54,13 +46,15 @@ public class PatientsController : ControllerBase
         
                 }).ToList(),
                 
-                ID = temp.ID,
-                FName = temp.FName,
-                LName = temp.LName,
-                Email = temp.Email
+                Doctor = new
+                {
+                    x.Doctor.IdDoctor,
+                    x.Doctor.FirstName,
+                    x.Doctor.LastName,
+                    x.Doctor.Email
+                }
             })
         };
-
         return Ok(res);
     }
 }

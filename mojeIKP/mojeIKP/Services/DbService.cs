@@ -23,17 +23,16 @@ public class DbService : IDbService
 
     public async Task<bool> DoesDoctorExists(int doctorid)
     {
-        //return await _context.Doctor.FindAsync(DoctorId) != null;
         return await _context.Doctor.AnyAsync(x => x.IdDoctor == doctorid);
     }
 
     public async Task<bool> DoesPatienExists(NewPatient patient)
     {
-        var res = await _context.Patient.AnyAsync(
-            x => x.IdPatient == patient.IdPatient &&
-                 x.FirstName == patient.FirstName &&
-                 x.LastName == patient.LastName &&
-                 x.Birthdate == patient.BirthDate
+        var res = await _context.Patient.AnyAsync(x => 
+            x.IdPatient == patient.IdPatient && 
+            x.FirstName == patient.FirstName && 
+            x.LastName == patient.LastName && 
+            x.Birthdate == patient.BirthDate
         );
 
         if (res == false)
@@ -42,7 +41,6 @@ public class DbService : IDbService
             if (res2 == true)
             {
                 patient.IdPatient = -1;
-                //throw new Exception("Patient with given ID exists but with different data");
             }
 
             return false;
@@ -98,7 +96,6 @@ public class DbService : IDbService
                 {
                     IdMedicament = med.IdMedicament,
                     IdPrescription = entry.Entity.IdPrescription,
-                    //IdPrescription = 
                     Dose = med.Dose,
                     Details = med.Details
                 }
@@ -108,7 +105,7 @@ public class DbService : IDbService
         await _context.SaveChangesAsync();
     }
 
-    public async Task<Patient?> GetPatientInfo(int PatientId)
+    public async Task<Patient?> GetPatientInfo(int patientid)
     {
         return await _context.Patient
             .Include(x => x.Prescriptions)
@@ -116,6 +113,6 @@ public class DbService : IDbService
             .ThenInclude(x => x.Medicament)
             .Include(y => y.Prescriptions)
             .ThenInclude(y => y.Doctor)
-            .FirstOrDefaultAsync(p => p.IdPatient == PatientId);
+            .FirstOrDefaultAsync(p => p.IdPatient == patientid);
     }
 }
