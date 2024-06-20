@@ -20,7 +20,6 @@
 
     <ItemGroup>
       <Folder Include="Context\" />
-      <Folder Include="RequestModels\" />
       <Folder Include="ResponseModels\" />
     </ItemGroup>
 

@@ -1,9 +1,16 @@
-﻿using mojeIKP.Models;
+﻿using Microsoft.EntityFrameworkCore.Storage;
+using mojeIKP.Models;
+using mojeIKP.RequestModels;
 
 namespace mojeIKP.Services;
 
 public interface IDbService
 {
-    public Task<bool> DoesPatienExists(int PatientId);
+    Task<IDbContextTransaction> BeginTransactionAsync();
+    public Task<bool> DoesDoctorExists(int DoctorId);
+    public Task DoesMedicamentExists(ICollection<Meds> meds);
+    public Task AddNewPatient(AddPrescriptionRequest request);
+    public Task<bool> DoesPatienExists(NewPatient patient);
+    public Task CreatePrescription(AddPrescriptionRequest request);
     public Task<Patient?> GetPatientInfo(int PatientId);
 }

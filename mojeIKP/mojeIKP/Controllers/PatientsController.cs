@@ -6,11 +6,11 @@ namespace mojeIKP.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class PatiensController : ControllerBase
+public class PatientsController : ControllerBase
 {
     private readonly IDbService _dbService;
     
-    public PatiensController(IDbService dbService)
+    public PatientsController(IDbService dbService)
     {
         _dbService = dbService;
     }
@@ -33,8 +33,6 @@ public class PatiensController : ControllerBase
             LName = pi.Prescriptions.Select(x => x.Doctor.LastName),
             Email = pi.Prescriptions.Select(x => x.Doctor.Email)
         };
-        
-        // var doc = use _service to get the doctor
         
         var res = new
         {
@@ -60,36 +58,8 @@ public class PatiensController : ControllerBase
                 FName = temp.FName,
                 LName = temp.LName,
                 Email = temp.Email
-                
-                
-            }).ToList()
+            })
         };
-
-        // var res = new
-        // {
-        //     pi.IdPatient,
-        //     pi.FirstName,
-        //     pi.LastName,
-        //     pi.Birthdate,
-        //     Prescriptions = pi.Prescriptions.Select(x => new
-        //     {
-        //         x.IdPrescription,
-        //         x.Date,
-        //         x.DueDate,
-        //         Medicaments = x.Prescription_Medicaments?.Select(y => new
-        //         {
-        //             y.IdMedicament,
-        //             y.Medicament?.Name,
-        //             y.Dose,
-        //             y.Medicament?.Description
-        //
-        //         }).ToList(),
-        //         x.IdDoctor,
-        //         x.Doctor?.FirstName,
-        //         x.Doctor?.LastName,
-        //         x.Doctor?.Email
-        //     }).ToList()
-        // };
 
         return Ok(res);
     }

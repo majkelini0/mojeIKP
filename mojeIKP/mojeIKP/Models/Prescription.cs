@@ -15,7 +15,8 @@ public class Prescription
     [Required]
     public DateTime DueDate { get; set; }
     
-    public ICollection<Prescription_Medicament> Prescription_Medicaments { get; set; } = new HashSet<Prescription_Medicament>();
+    public ICollection<Prescription_Medicament> Prescription_Medicaments { get; set; } 
+        = new HashSet<Prescription_Medicament>();
     
     public int IdPatient { get; set; }
     [ForeignKey(nameof(IdPatient))] 
